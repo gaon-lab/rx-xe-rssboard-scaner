@@ -10,7 +10,6 @@
 require_once('./modules/rssboard/simplepie.php');
 require_once('./modules/rssboard/lastrss.php');
 
-
 class rssboardController extends rssboard {
 	
 	
@@ -54,8 +53,8 @@ class rssboardController extends rssboard {
 			$last_updatedate = $this->getRegdateTime($rssboard->updatedate);
 			
 			// 최종 업데이트 시간이 10분 이내면 무시
-			if( time() < ($last_updatedate + 600) )
-				return ;
+		//	if( time() < ($last_updatedate + 0) )
+		//		return ;
 		}
 		
 		// document module의 controller 객체 생성
@@ -73,12 +72,16 @@ class rssboardController extends rssboard {
 		$sRss = $LRss->get($link);
 
 
-
+		
 		// 최종 업데이트 일 이후에 작성된 글을 대상 게시판에 추가
 		foreach(array_reverse($sRss['items'],1) as $item)
 		{
-		
-			if ($last_updatedate > $item['rss'] )
+			
+
+			$date = new DateTime($item['pubDate']);
+			$date->format('YmdHis');
+			
+			if ($last_updatedate > $date->format('YmdHis') )
 			continue;
 
 			$obj = null;
@@ -124,8 +127,6 @@ if(strpos($item['description'], "<![CDATA[") !== false) {
 			$obj->nick_name =  $this->admin_info->nick_name;
 			$obj->email_address =  $this->admin_info->email_address;
 
-			$date = new DateTime($item['pubDate']);
-			$date->format('YmdHis');
 			//$date = date("YmdHis");
 			$obj->regdate = $this->getRegdateTime($date->format('YmdHis'));
 			$obj->category_srl = $rssboard->category_srl;
