@@ -95,10 +95,15 @@ class rssboardController extends rssboard {
 if(strpos($item['description'], "<![CDATA[") !== false) {  
 
 
-     $d = iconv("EUC-KR","UTF-8", $item['description']); 
-      $t = iconv("EUC-KR","UTF-8", $item['title']);
-       $l =  iconv("EUC-KR","UTF-8", $item['link']);
+     $d = $item['description'];
+      $t = $item['title'];
+       $l = $item['link'];
 
+/*
+     $d = iconv("EUC-KR","UTF-8", $item['description']); 
+     $t = iconv("EUC-KR","UTF-8", $item['title']);
+       $l =  iconv("EUC-KR","UTF-8", $item['link']);
+*/
 
        $d= str_replace('<![CDATA[','', $d);
        $d= str_replace(']]>','', $d);
