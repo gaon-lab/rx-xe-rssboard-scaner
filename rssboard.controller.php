@@ -9,7 +9,7 @@
      **/
 require_once('./modules/rssboard/simplepie.php');
 require_once('./modules/rssboard/lastrss.php');
-require 'XMLParser.php';
+
 
 class rssboardController extends rssboard {
 	
