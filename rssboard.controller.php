@@ -52,9 +52,9 @@ class rssboardController extends rssboard {
 		{
 			$last_updatedate = $this->getRegdateTime($rssboard->updatedate);
 			
-			// 최종 업데이트 시간이 10분 이내면 무시
-		//	if( time() < ($last_updatedate + 0) )
-		//		return ;
+			// 최종 업데이트 시간이 5분 이내면 무시
+			if( time() < ($last_updatedate + 300) )
+				return ;
 		}
 		
 		// document module의 controller 객체 생성
