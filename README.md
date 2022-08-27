@@ -1,8 +1,6 @@
 # rx-xe-rssboard-scaner
 rss를 기반으로 글을 자동으로 작성합니다.
 
-https://gaonlab.me/all/554
-
 위 내용을 참고하시면 아시겠지만..
 원개발저는 저가 아닌 다른분입니다.
 
